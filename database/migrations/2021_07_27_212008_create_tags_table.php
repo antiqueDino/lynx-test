@@ -18,6 +18,15 @@ class CreateTagsTable extends Migration
             $table->string('name');
             $table->timestamps();
         });
+
+        Schema::create('post_tags', function (Blueprint $table) {
+          $table->foreignId('post_id')->constrained('posts');
+
+          $table->foreignId('tags_id')->constrained('tags');
+
+          $table->timestamps();
+      });
+
     }
 
     /**
@@ -28,5 +37,7 @@ class CreateTagsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('tags');
+        Schema::dropIfExists('post_tag');
+
     }
 }
