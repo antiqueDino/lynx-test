@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use App\Models\Post;
 
 class GetPostByTag extends Command
 {
@@ -38,7 +39,15 @@ class GetPostByTag extends Command
     public function handle()
     {
         $tag = $this->ask('Which tag post do you want?');
-        $this->line('You asked for posts with tags: '.$tag);
+        // $this->line('You asked for posts with tags: '.$tag);
+        $posts = Post::ByTag($tag)->get();
+        $this->line($posts);
+        // foreach ($posts as $post) {
+        //   $this->info('Post id: '. $post->id);
+        //   $this->info('Post title: '. $post->title);
+        //   $this->info('Post content: '. $post->content);
+        // }
+        // $this->table(['id','title', 'content'], $posts);
         return 0;
     }
 }
