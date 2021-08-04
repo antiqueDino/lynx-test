@@ -24,8 +24,7 @@ class DatabaseSeeder extends Seeder
               ->pluck('id')
               ->toArray()
         );
-        // $tag->posts->asscoiate($posts->random(4));
       });
-    
+
     }
 }
